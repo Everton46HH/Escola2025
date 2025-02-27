@@ -67,7 +67,35 @@ def calculo_multa(peixada):
 # Quantidade de latas: 1, Quantidade de galões: 1
 # Preço total: R$ 105.00
 def calcular_tinta(area):
-    pass
+
+    area_latas = 18 * 6
+    area_galao = 3,6 * 6
+
+    latas = 0
+    galoes = 0
+    nova_area = area 
+    for x in range(0,1000):
+        if nova_area > area_latas:
+            latas+=1
+            nova_area = area - area_latas
+        else:
+            galoes+=1
+    preco_galoes = galoes * 25
+    preco_latas = latas * 80
+
+    print({
+        "galoes" : galoes,
+        "latas" : latas,
+        "preco_galoes" : preco_galoes,
+        "preco_latas" : preco_latas
+
+    })
+            
+
+calcular_tinta(100)
+
+
+
 
 # 6. Faça uma função que receba dois números e retorne o maior deles.
 def maior_numero():
