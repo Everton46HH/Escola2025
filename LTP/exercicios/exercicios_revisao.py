@@ -80,6 +80,8 @@ def calcular_tinta(area):
             nova_area = area - area_latas
         else:
             galoes+=1
+
+            
     preco_galoes = galoes * 25
     preco_latas = latas * 80
 
