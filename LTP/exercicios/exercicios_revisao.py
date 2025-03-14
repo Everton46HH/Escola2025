@@ -7,8 +7,6 @@ def saudacao(nome):
     mensagem = f"Boa tarde, {nome}. Seja bem vindo!"
     return mensagem
 
-print(saudacao("Ana"))
-
 # 2. Faça uma função que peça o raio de um círculo e retorne sua área.
 def area_circulo(raio):
 
@@ -39,11 +37,14 @@ def fahrenheit_para_celsius(f):
 # Peso dentro do limite. Nenhuma multa aplicada.
 def calculo_multa(peixada):
     
-    excesso = 50 - peixada
+    excesso = peixada - 50
 
-    multa = 4 * peixada
+    multa = 4 * excesso
 
-    return (f"Excesso de peso : {excesso}\n Multa a pagar: R${multa}")
+    mensagem = f'Excesso de peso: {excesso} kg. Multa a pagar: R$ {multa}.00.'
+
+    return mensagem
+
 
 # 5. Faça uma função para calcular a quantidade de tinta necessária para pintar uma área.
 # O função deverá receber o tamanho em metros quadrados da área a ser pintada. Considere que a cobertura da tinta é 
@@ -67,59 +68,53 @@ def calculo_multa(peixada):
 # Quantidade de latas: 1, Quantidade de galões: 1
 # Preço total: R$ 105.00
 def calcular_tinta(area):
-
-    area_latas = 18 * 6
-    area_galao = 3,6 * 6
-
-    latas = 0
-    galoes = 0
-    nova_area = area 
-    for x in range(0,1000):
-        if nova_area > area_latas:
-            latas+=1
-            nova_area = area - area_latas
-        else:
-            galoes+=1
-
-            
-    preco_galoes = galoes * 25
-    preco_latas = latas * 80
-
-    print({
-        "galoes" : galoes,
-        "latas" : latas,
-        "preco_galoes" : preco_galoes,
-        "preco_latas" : preco_latas
-
-    })
-            
-
-calcular_tinta(100)
-
-
-
+    pass
 
 # 6. Faça uma função que receba dois números e retorne o maior deles.
-def maior_numero():
-    pass
+def maior_numero(x,y):
+    if x>y:
+        return x
+    else:
+        return y
 
 # 7. Faça uma função que verifique se uma letra é vogal ou consoante.
-def verificar_letra():
-    pass
-
+def verificar_letra(letra):
+    if letra == 'a' or letra == 'e' or letra == 'i' or letra == 'o' or letra == 'u':
+        print("Vogal")
+    else:
+        print("Consoante")
 # 8. Faça um Programa que receba três números e retorne o maior deles.
-def maior_tres_numeros():
-    pass
+def maior_tres_numeros(x,y,z):
+
+    if x>y and x>z:
+        return x
+    elif y>x and y>z:
+        return y
+    else:
+        return z
 
 # 9. Faça uma função que retorne o menor valor entre três numeros informados.
-def produto_mais_barato():
-    pass
-
+def produto_mais_barato(x,y,z):
+    if x<y and x<z:
+        return x
+    elif y<x and y<z:
+        return y
+    else:
+        return z
 # 10. Faça uma funçao que retorne uma saudação com base no turno de estudo.
 # A entrada deverá ser M-matutino ou V-Vespertino ou N- Noturno. 
 # Imprima a mensagem "Bom Dia!", "Boa Tarde!" ou "Boa Noite!" ou "Valor Inválido!", conforme o caso.
-def saudacao_turno():
-    pass
+def saudacao_turno(letra):
+    if letra == 'M':
+        mensagem = "Bom Dia!"
+    elif letra == 'V':
+        mensagem = "Boa Tarde!"
+    elif letra == 'N':
+        mensagem = "Boa Noite!"
+    else:
+        mensagem = "Valor Inválido!"
+    return mensagem
+
 
 # 11. Faça uma função para um caixa eletrônico que informe quantas notas de cada valor serão fornecidas
 # ao ser solicitado um saque.
@@ -133,8 +128,34 @@ def saudacao_turno():
 # 1 nota(s) de R$ 5
 # 1 nota(s) de R$ 1
 
-def caixa_eletronico():
-    pass
+def caixa_eletronico(saque):
+
+    valor = saque
+    notas_cem , notas_dez , notas_cinco , notas_um = 0 , 0 , 0 , 0 
+
+    while valor >= 100:
+        notas_cem +=1
+        valor = valor - 100
+
+    while valor >= 10:
+        notas_dez +=1
+        valor = valor - 10
+
+    while valor >= 5:
+        notas_cinco +=1
+        valor = valor - 5
+    
+    while valor >= 1:
+        notas_um +=1
+        valor = valor - 1
+    
+
+    notas = [100,10,5,1]
+    notas_quantidades = [notas_cem,notas_dez,notas_cinco,notas_um]
+
+    for i in range(len(notas)):
+        print(f"O valor de notas" , notas[i], "sacadas são : " ,notas_quantidades[i] )
+
 
 # 12. Desenvolva uma lógica que classifique uma pessoa com base nas respostas sobre um crime.
 # A função deverá receber receba a resposta as seguintes perguntas:
@@ -145,8 +166,26 @@ def caixa_eletronico():
 # "Já trabalhou com a vítima?" O programa deve no final emitir uma classificação sobre a participação da pessoa no crime. 
 # Se a pessoa responder positivamente a 2 questões ela deve ser classificada como "Suspeita", 
 # entre 3 e 4 como "Cúmplice" e 5 como "Assassino". Caso contrário, ele será classificado como "Inocente".
-def classificar_participacao():
-    pass
+def classificar_participacao(respostas):
+
+    culpado = 0
+    for x in range(len(respostas)):
+        if respostas[x] == 's':
+            culpado+=1
+        else:
+            pass
+
+    if culpado == 5:
+        return "AÇAZINO"
+    
+    elif  3 <= culpado and culpado <= 4:
+        return "Cumplice"
+    
+    if culpado>=2:
+        return "Suspeito,Cadeia nele"
+    
+    else:
+        return "Inocente,liberado"
 
 # 13. Faça um Programa que calcule o preço da carne em uma promoção com desconto opcional.
 # O Hipermercado Tabajara está com uma promoção de carnes que é imperdível. Confira:
@@ -160,17 +199,58 @@ def classificar_participacao():
 # carne comprada pelo usuário e gere um cupom fiscal, contendo as informações da compra: tipo e quantidade de
 # carne, preço total, tipo de pagamento, valor do desconto e valor a pagar.
 
-def calcular_preco_carne():
-    pass
+def calcular_preco_carne(tipo, quantidade, pagamento_cartao):
+    if tipo == "File Duplo":
+        preco = 4.90 if quantidade <= 5 else 5.80
+    elif tipo == "Alcatra":
+        preco = 5.90 if quantidade <= 5 else 6.80
+    elif tipo == "Picanha":
+        preco = 6.90 if quantidade <= 5 else 7.80
+    else:
+        return "Tipo de carne inválido"
+
+    preco_total = preco * quantidade
+    desconto = 0
+
+    if pagamento_cartao:
+        desconto = preco_total * 0.05
+
+    valor_a_pagar = preco_total - desconto
+
+    cupom_fiscal = (
+        f"Tipo de carne: {tipo}\n"
+        f"Quantidade: {quantidade} Kg\n"
+        f"Preço total: R$ {preco_total}\n"
+        f"Tipo de pagamento: {'Cartão Tabajara' if pagamento_cartao else 'Outro'}\n"
+        f"Valor do desconto: R$ {desconto}\n"
+        f"Valor a pagar: R$ {valor_a_pagar}"
+    )
+
+    return cupom_fiscal
 
 # 14. Faça um programa que peça dois números, base e expoente, calcule e mostre o primeiro número elevado ao segundo número. 
 # Não utilize a função de potência da linguagem.
-def potencia():
-    pass
+def potencia(a,b):
 
-# 15. Faça um Programa que retorne o menor, maior e a soma de um conjunto de números.
-def estatisticas_numeros():
-    pass
+    return a ** b
+
+# 15. Faça um Programa que retorne o menor, maior e a soma de um *args de números.
+def estatisticas_numeros(*args):
+    maior = 0
+    soma = 0
+    menor = args[0]
+
+    for i in range(len(args)):
+        soma += args[i]
+
+        if args[i] > maior:
+            maior = args[i]
+
+        elif args[i] < menor:
+            menor = args[i]
+
+    return maior,menor,soma
+
 
 # 16. Faça uma função que valide se uma nota está entre 0 e 10.
 # Mostre uma mensagem caso o valor seja inválido e continue pedindo até que o usuário informe um valor válido.
@@ -179,7 +259,12 @@ def estatisticas_numeros():
 # Nota válida: 5.5
 
 def validar_nota():
-    pass
+    while True:
+        nota = int(input("Digite a nota: "))
+        if nota is None or nota < 0:
+            print("Erro : A nota deve estar entre 0 e 10. Tente Novamente")
+        else:
+            return f"Nota válida : {nota}"
 
 # 17. Faça uma funçao que leia um nome de usuário e a sua senha e não aceite a senha igual ao nome do usuário, 
 # mostrando uma mensagem de erro e voltando a pedir as informações.
@@ -187,16 +272,33 @@ def validar_nota():
 # "Erro: A senha não pode ser igual ao nome de usuário. Tente novamente."
 # "Usuário e senha cadastrados com sucesso!"
 def validar_usuario_senha():
-    pass
+    usuario = input("Digite seu usuario: ")
+    senha = int(input("Digite sua senha: "))
 
-# 18. Faça um Programa que calcule a média aritmética de um conjunto de N notas.
-def media_notas():
-    pass
+    if senha == usuario:
+        print('A senha nao pode ser igual ao usuario')
+    else:
+        print("Usuario e senha cadastrados")
+
+# 18. Faça um Programa que calcule a média aritmética de um *args de N notas.
+def media_notas(*args):
+    soma = 0
+    for i in range(len(*args)):
+        soma += args
+    return soma
 
 # 19. Faça um programa que mostre os n termos da Série a seguir:
 #     S = 1/1 + 2/3 + 3/5 + 4/7 + 5/9 + ... + n/m. 
-def calcular_serie():
-    pass
+def calcular_serie(n):
+    soma = 0
+
+    for i in range(0,n + 1):
+
+        res = n / (n*2 - 1)
+
+        soma += res
+
+    return soma
 
 # 20. Em uma competição de ginástica, cada atleta recebe votos de sete jurados. A melhor e a pior nota são eliminadas.
 #  A sua nota fica sendo a média dos votos restantes. Você deve fazer um programa que receba o nome do ginasta e as notas 
@@ -217,16 +319,40 @@ def calcular_serie():
 # Melhor nota: 9.8
 # Pior nota: 7.0
 # Média: 8.50
-def calcular_media_ginastica():
-    pass
+def calcular_media_ginastica(nome,*args):
+    melhor = 0
+    pior = 1000000
+    soma = 0
+
+    for i in range(len(args)):
+        soma += args[i]
+        if args[i] > melhor :
+            melhor = args[i]
+
+        elif args[i] < pior:
+            pior = args[i]
+        
+    return nome,melhor,pior,soma/len(args)
 
 # 21. Faça um Programa que desenhe uma pirâmide alinhada à esquerda.
-def piramide_esquerda():
-    pass
+def piramide_esquerda(x):
+    piramide = ''
+    for i in range(1, x + 1):  # Começar de 1 e ir até x
+        linha = '#' * i  # Cria a linha com i asteriscos
+        piramide += linha + '\n'
+    return piramide
+print(piramide_esquerda(3))
+        
 
 # 22. Faça um Programa que desenhe uma pirâmide alinhada à direita.
-def piramide_direita():
-    pass
+def piramide_direita(altura):
+    piramide = ''
+    for i in range(1, altura + 1):
+        espacos = ' ' * (altura - i)
+        estrelas = '#' * i
+        piramide += espacos + estrelas + '\n'
+
+    return piramide
 
 # 23. Faça um Programa que desenhe duas pirâmides lado a lado.
 def piramides_lado_a_lado():
